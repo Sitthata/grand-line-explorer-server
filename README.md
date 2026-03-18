@@ -1,11 +1,8 @@
 # Grand Line Explorer - Server
 
-Implement the following 5 API endpoints to power the frontend.
+Implement the following 6 API endpoints to power the frontend.
 
-The Express app and database pool are already set up for you. You only need to write the route handlers in:
-
-- `routes/islands.js`
-- `routes/characters.js`
+The Express app and database pool are already set up for you. You only need to write the route handlers.
 
 ## Database Schema
 
@@ -149,7 +146,54 @@ Create a new character.
 
 ---
 
-### 5. DELETE `/api/characters/:id`
+### 5. PUT `/api/characters/:id`
+
+Update an existing character by ID.
+
+**Request body:**
+
+```json
+{
+  "name": "Ace",
+  "bounty": "550,000,000",
+  "role": "2nd Division Commander",
+  "image_url": "...",
+  "island_id": 1,
+  "devil_fruit": "Mera Mera no Mi (Flame)",
+  "description": "Luffy's sworn brother who gave his life at Marineford."
+}
+```
+
+**Response (200):**
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "Ace",
+    "bounty": "550,000,000",
+    "role": "2nd Division Commander",
+    "image_url": "...",
+    "island_id": 1,
+    "devil_fruit": "Mera Mera no Mi (Flame)",
+    "description": "Luffy's sworn brother who gave his life at Marineford."
+  }
+}
+```
+
+**Error (404):**
+
+```json
+{
+  "error": "Character not found"
+}
+```
+
+**Hint:** Use `UPDATE ... SET ... WHERE id = $8 RETURNING *` to update and return the row in one query.
+
+---
+
+### 6. DELETE `/api/characters/:id`
 
 Delete a character by ID.
 
@@ -186,6 +230,6 @@ All errors follow this format:
 ## SQL Hints
 
 - Use `$1`, `$2`, etc. for parameterized queries
-- Use `RETURNING *` to get the inserted/deleted row back
+- Use `RETURNING *` to get the inserted/updated/deleted row back
 - Use `LEFT JOIN` to combine characters with island names
 - Use `ORDER BY id` for consistent ordering
