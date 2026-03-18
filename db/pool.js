@@ -1,4 +1,5 @@
-const { Pool } = require("pg");
+import pg from "pg";
+const { Pool } = pg;
 
 const pool = new Pool({
   connectionString:
@@ -6,4 +7,4 @@ const pool = new Pool({
     "postgresql://pirate:onepiece@localhost:5432/grand_line_explorer",
 });
 
-module.exports = pool;
+export default pool;

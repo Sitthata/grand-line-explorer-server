@@ -1,8 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const islandRoutes = require("./routes/islands");
-const characterRoutes = require("./routes/characters");
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,10 +14,6 @@ app.use(
   })
 );
 app.use(express.json());
-
-// Routes
-app.use("/api/islands", islandRoutes);
-app.use("/api/characters", characterRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {
