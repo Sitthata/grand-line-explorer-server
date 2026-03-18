@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
 const islandRoutes = require("./routes/islands");
 const characterRoutes = require("./routes/characters");
 
@@ -7,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
+app.use(morgan("dev"));
 app.use(
   cors({
     origin: "http://localhost:3000",
